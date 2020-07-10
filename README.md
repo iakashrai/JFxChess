@@ -13,7 +13,7 @@ This project can be directly imported in IntelliJ and developers can start strai
 Download the Jar File and run.
 
 ### A Gif Demo
-
+![gif demo](demo.gif)
 
 ### To-Do
  - add timers for players
