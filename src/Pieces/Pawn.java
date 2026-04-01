@@ -2,14 +2,11 @@ package Pieces;
 
 import ChessBoard.Cell;
 import ChessBoard.ChessBoard;
-import javafx.scene.layout.GridPane;
-
 import java.util.ArrayList;
 
 public class Pawn extends Piece {
 
     int direction;
-    boolean firstTime;
 
     public Pawn(String color, Cell position) {
         super(color, "pawn", position);
@@ -19,10 +16,7 @@ public class Pawn extends Piece {
         else
             direction = -1;
 
-//        start = position.getX();
-
         this.position.setImage("pawn", color);
-
     }
 
     @Override
@@ -31,43 +25,42 @@ public class Pawn extends Piece {
         int x = position.getRow();
         int y = position.getCol();
 
-        System.out.println("Cell: X:" + x + " Y: " + y);
-        Cell[][] cell = position.getBoard().getCells();
+        ChessBoard board = (ChessBoard) position.getBoard();
+        Cell[][] cell = board.getCells();
 
-        if ((x + direction) < 8 && (y - 1) >= 0) {
-            if (cell[x + direction][y - 1].isOccupied()) {
-                if (!cell[x + direction][y - 1].getOccupyingPiece().color.equals(color)) {
-                    possibleMoves.add(cell[x+direction][y-1]);
-                    System.out.println("1");
+        int nextX = x + direction;
+
+        if (nextX >= 0 && nextX < 8) {
+            // Forward 1 step
+            if (!cell[nextX][y].isOccupied()) {
+                possibleMoves.add(cell[nextX][y]);
+
+                // Double step (only if 1 step is also free)
+                if (!hasMoved()) {
+                    int doubleX = x + 2 * direction;
+                    if (doubleX >= 0 && doubleX < 8 && !cell[doubleX][y].isOccupied()) {
+                        possibleMoves.add(cell[doubleX][y]);
+                    }
                 }
             }
-        }
 
-        if ((x + direction) < 8 && (y + 1) >= 0) {
-            if (cell[x + direction][y + 1].isOccupied()) {
-                if (!cell[x + direction][y + 1].getOccupyingPiece().color.equals(color)) {
-                    possibleMoves.add(cell[x + direction][y + 1]);
-                    System.out.println("2");
+            // Capture left
+            if (y - 1 >= 0) {
+                if (cell[nextX][y - 1].isOccupied() && !cell[nextX][y - 1].getOccupyingPiece().getColor().equals(color)) {
+                    possibleMoves.add(cell[nextX][y - 1]);
+                } else if (cell[nextX][y - 1] == board.enPassantTarget) {
+                    possibleMoves.add(cell[nextX][y - 1]);
                 }
             }
-        }
 
-        if (x + direction < 8) {
-            if (!cell[x + direction][y].isOccupied()) {
-                possibleMoves.add(cell[x + direction][y]);
-                System.out.println("3");
+            // Capture right
+            if (y + 1 < 8) {
+                if (cell[nextX][y + 1].isOccupied() && !cell[nextX][y + 1].getOccupyingPiece().getColor().equals(color)) {
+                    possibleMoves.add(cell[nextX][y + 1]);
+                } else if (cell[nextX][y + 1] == board.enPassantTarget) {
+                    possibleMoves.add(cell[nextX][y + 1]);
+                }
             }
-        }
-//        if((y+direction)<8){
-//            if(!cell[y+direction][x].isOccupied()) {
-//                possibleMoves.add(cell[y+direction][x]);
-//                System.out.println("4");
-//            }
-//        }
-
-        System.out.println("Possible Moves :");
-        for (Cell c : possibleMoves) {
-            System.out.print(c.getRow() + "" + c.getCol());
         }
 
         return possibleMoves;

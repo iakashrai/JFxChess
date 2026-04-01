@@ -65,17 +65,24 @@ public class Cell extends Button{
         return occupyingPiece;
     }
 
+    public void setOccupyingPieceSilently(Piece piece) {
+        this.occupyingPiece = piece;
+        this.occupied = (piece != null);
+    }
+
     public void addPiece(Piece piece) {
         this.occupyingPiece = piece;
         this.occupied = true;
     }
 
     public void deletePiece(){
-        this.getOccupyingPiece().setPosition(null);
-        this.getOccupyingPiece().setAlive(false);
+        if (this.occupyingPiece != null) {
+            this.occupyingPiece.setPosition(null);
+            this.occupyingPiece.setAlive(false);
+        }
         this.occupyingPiece = null;
         this.occupied = false;
-//        System.out.println("After Delete occupinPiece is "+ occupyingPiece);
+        this.setGraphic(null);
     }
 
 //    public String getColor() {

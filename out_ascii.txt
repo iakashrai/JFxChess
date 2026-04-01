@@ -1,0 +1,48 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -------------------------< com.chess:JFxChess >-------------------------
+[INFO] Building JFxChess 1.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[WARNING] 6 problems were encountered while building the effective model for org.openjfx:javafx-controls:jar:21.0.1 during dependency collection step for project (use -X to see details)
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ JFxChess ---
+[INFO] Deleting F:\Projects\JFxChess\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ JFxChess ---
+[INFO] Copying 12 resources from src to target\classes
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ JFxChess ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 14 source files with javac [debug target 21] to target\classes
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] /F:/Projects/JFxChess/src/ChessBoard/GameManager.java:[18,34] cannot find symbol
+  symbol: class Application
+[ERROR] /F:/Projects/JFxChess/src/ChessBoard/GameManager.java:[24,9] cannot find symbol
+  symbol:   method launch(java.lang.String[])
+  location: class ChessBoard.GameManager
+[ERROR] /F:/Projects/JFxChess/src/ChessBoard/GameManager.java:[27,5] method does not override or implement a method from a supertype
+[INFO] 3 errors 
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  2.844 s
+[INFO] Finished at: 2026-04-01T09:34:44+05:30
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.13.0:compile (default-compile) on project JFxChess: Compilation failure: Compilation failure: 
+[ERROR] /F:/Projects/JFxChess/src/ChessBoard/GameManager.java:[18,34] cannot find symbol
+[ERROR]   symbol: class Application
+[ERROR] /F:/Projects/JFxChess/src/ChessBoard/GameManager.java:[24,9] cannot find symbol
+[ERROR]   symbol:   method launch(java.lang.String[])
+[ERROR]   location: class ChessBoard.GameManager
+[ERROR] /F:/Projects/JFxChess/src/ChessBoard/GameManager.java:[27,5] method does not override or implement a method from a supertype
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

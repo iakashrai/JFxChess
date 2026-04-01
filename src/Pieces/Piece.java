@@ -14,12 +14,14 @@ public abstract class Piece {
     boolean alive;
     Cell position;
     ImageView image;
+    private boolean hasMoved;
 
     Piece(String color,String name,Cell position){
         this.color = color;
         this.name =  name;
         this.position = position;
         this.alive = true;
+        this.hasMoved = false;
 //        this.board = position.getBoard();
     }
 
@@ -93,4 +95,11 @@ public abstract class Piece {
         this.position = position;
     }
 
+    public boolean hasMoved() {
+        return hasMoved;
+    }
+
+    public void setHasMoved(boolean hasMoved) {
+        this.hasMoved = hasMoved;
+    }
 }
